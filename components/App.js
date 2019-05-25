@@ -1,9 +1,12 @@
 import React from 'react'
+import SampleMap from './SampleMap'
 
 class App extends React.Component{
     render(){
         return(
-            <div></div>
+            <div>
+                <SampleMap/>
+            </div>
         )
     }
 }
