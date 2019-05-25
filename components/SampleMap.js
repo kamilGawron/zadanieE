@@ -28,8 +28,8 @@ var poiIcon = L.icon({
 
 
 export default class SampleMap extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
             lat: 51.919438,
             lng: 19.145136,
@@ -39,14 +39,15 @@ export default class SampleMap extends Component {
             parkings:[],
             parkingsLoaded:false,
             pois:[],
-            poisLoaded:false
+            poisLoaded:false,
         }
 }
     componentDidMount(){
+        
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE")
         .then(response=>response.json())
         .then(function(data){
-            console.log();
+            console.log("Cars",data.objects);
             return data
         })
         .then((data)=>{
@@ -71,11 +72,14 @@ export default class SampleMap extends Component {
                 this.setState({pois:data.objects,poisLoaded:true})
             })
         }
+   componentDidUpdate(){
+       console.log("up",this.state.showCars)
+   }
    
 render() {
     let cars,parkings,pois;
     if(this.state.carsLoaded){
-        cars = this.state.cars.map(function(elem,index){
+        cars = this.props.showCars?  this.state.cars.map(function(elem,index){
             return(
                 <Marker 
                     key={index} 
@@ -87,7 +91,7 @@ render() {
                     </Popup>
                 </Marker>
             )
-        })
+        }) : []
     }
     if(this.state.parkingsLoaded){
         parkings = this.state.parkings.map(function(elem,index){
