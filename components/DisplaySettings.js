@@ -18,9 +18,22 @@ function DisplaySettings(props){
                 <input id="poisToggler" type="checkbox" onChange={props.poisToggler} defaultChecked/>
                 <span className="slider round"></span>
             </label>
-            <label>Minimalny poziom baterii samochodu
-                <input onChange={props.minBatteryLevelChange} min="0" max="100" id="minBatteryInput" type="number" value={props.minBatteryLevel}/>
+            <label>Minimalny procentowy poziom baterii samochodu
+                <input name="minBatteryLevel" onChange={props.inputChange} min="0" max="100" id="minBatteryInput" type="range" value={props.minBatteryLevel}/>
+                <input name="minBatteryLevel" onChange={props.inputChange} min="0" max="100" id="minBatteryInput" type="text" value={props.minBatteryLevel}/>
             </label>
+            <label>Minimalny zasięg kilometrów
+                <input name="minRange" onChange={props.inputChange} min="0" id="minRangeInput" type="number" value={props.minRange}/>
+                <input name="minRange" onChange={props.inputChange} min="0" max={props.maxRange} id="minRangeInput" type="range" value={props.minRange}/>
+            </label>
+            {
+             props.minBatteryLevel!=0||
+             props.minRange!=0?
+                 props.filterCarLen==props.cars.length?
+                 <span>Wszystkie samochody spełniają określone kryteria</span>:
+                 <span>znaleziono: {props.filterCarLen}</span> 
+             : ""
+            }
         </div>
        
     )

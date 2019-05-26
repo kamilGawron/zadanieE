@@ -41,10 +41,7 @@ render() {
     let cars,parkings,pois;
     var self = this;
     if(this.props.carsLoaded){
-        let tmpCars = this.props.cars.filter(function(elem){
-            return elem.batteryLevelPct>self.props.minBatteryLevel
-        })
-        cars = this.props.showCars?  tmpCars.map(function(elem,index){
+        cars = this.props.showCars?  this.props.cars.map(function(elem,index){
             return(
                 <Marker 
                     key={index} 

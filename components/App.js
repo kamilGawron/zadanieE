@@ -16,22 +16,31 @@ class App extends React.Component{
             showParkings:true,
             showPois:true,
             minBatteryLevel:0,
+            minRange:0,
+            maxRange:0,
+            
         }
         this.carsToggler = this.carsToggler.bind(this)
         this.parkingsToggler = this.parkingsToggler.bind(this)
         this.poisToggler = this.poisToggler.bind(this)
-        this.minBatteryLevelChange = this.minBatteryLevelChange.bind(this)
+        this.inputChange = this.inputChange.bind(this)
     }
     componentDidMount(){
-
+        let tmpMaxRange=0;
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE")
             .then(response=>response.json())
             .then(function(data){
-            console.log("Cars",data.objects);
-            return data
-        })
+                tmpMaxRange = data.objects[0].rangeKm;
+                for (let x in data.objects){
+                    if(data.objects[x].rangeKm>tmpMaxRange){
+                        tmpMaxRange = data.objects[x].rangeKm;
+                    }
+                }
+                console.log("Cars",data.objects);
+                return data
+            })
             .then((data)=>{
-            this.setState({cars:data.objects,carsLoaded:true})
+            this.setState({cars:data.objects,carsLoaded:true,maxRange:tmpMaxRange})
         })
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING")
             .then(response=>response.json())
@@ -74,11 +83,18 @@ class App extends React.Component{
             }
         })
     }
-    minBatteryLevelChange(e){
-        this.setState({minBatteryLevel:e.target.value})
+    inputChange(e){
+        this.setState({[e.target.name]:e.target.value})
     }
     
     render(){
+        let tmpCars;
+        if(this.state.carsLoaded){
+            tmpCars = this.state.cars.filter(elem=>{
+                return elem.batteryLevelPct>=this.state.minBatteryLevel&&elem.rangeKm>=this.state.minRange
+
+            })
+        }
         return(
             this.state.carsLoaded&&this.state.parkingsLoaded&&this.state.poisLoaded?
             <div>
@@ -87,11 +103,13 @@ class App extends React.Component{
                    carsToggler={this.carsToggler}
                    parkingsToggler={this.parkingsToggler}
                    poisToggler={this.poisToggler}
-                   minBatteryLevelChange={this.minBatteryLevelChange}
+                   inputChange={this.inputChange}
+                   filterCarLen={tmpCars.length}
                    
                />
                 <SampleMap
                     {...this.state}
+                    cars={tmpCars}
                 />
             </div>
             : <div>loading...</div>
