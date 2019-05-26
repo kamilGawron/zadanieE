@@ -1,28 +1,173 @@
+:root{
+    font-size: 10px;
+}
 body{
     padding: 0;
     margin: 0;
 }
 .leaflet-container{
-    left: 50%;
     height: 100vh;
-    width: 50%;
+    width: 100vw;
     margin: 0;
 }
-#root{
-    width: 100%;
+.leaflet-control{
+    top:100px;
 }
-
 .settings{
-    width: 50%;
+    z-index: 1000;
     position: absolute;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    background-color: rgba(0,0,0,.9);
+    border-bottom: 2px solid #2196F3;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.settings .general{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; 
+    -webkit-box-orient: vertical; 
+    -webkit-box-direction: normal; 
+    -ms-flex-direction: column; 
+    flex-direction: column;
+    -webkit-box-pack: center; 
+    -ms-flex-pack: center; 
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.4rem;
+}
+.settings .general>h6{
+    margin: 5px;
+    text-align: center;
+    font-size: 1.6rem;
+}
+.settings .general>div{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.settings .general>div>div{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin: 10px;
+    width: 100px;
+}
+.settings .general div:last-of-type{
+    margin-left: 50px;
+    
+}
+.settings .general div .filters-icon{
+    font-size: 2.4rem;
+    cursor: pointer;
 }
 
+.settings #filters{
+    position: absolute;
+    top:100px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 60%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,.9);
+    padding: 10px;
+    padding-left: 50px;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 1.2rem;
+
+    
+}
+.settings .specific-settings input::-webkit-outer-spin-button,
+.settings .specific-settings input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+.settings .specific-settings input[type=number]{
+    width: 40px;
+    border: none;
+    background-color: transparent;
+    color: #ffffff;
+    border-bottom: 1px solid #2196F3;
+    -moz-appearance:textfield;
+    text-align: center;
+}
+.settings .specific-settings input[type=range]::-webkit-slider-thumb,
+.settings .specific-settings input[type=range]::-moz-range-thumb,
+.settings .specific-settings input[type=range]::-ms-thumb{
+   color: red;
+}
+
+.settings .specific-settings .cars,
+.settings .specific-settings .parkings{
+    margin: 0;
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.settings .specific-settings .cars>div,
+.settings .specific-settings .parkings>div{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.settings .specific-settings .cars h6,
+.settings .specific-settings .parkings h6{
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+}
 /*SWITCHER*/
 .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 46px;
+    height: 25px;
+    top:5px;
 }
 
 /* Hide default HTML checkbox */
@@ -48,8 +193,8 @@ body{
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 16px;
+    width: 16px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -67,8 +212,8 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(22px);
+    transform: translateX(22px);
 }
 
 /* Rounded sliders */
@@ -78,4 +223,37 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+
+@media all and (max-width:768px){
+    .settings #filters{
+        width: 100%;
+        border-radius: 0;
+    }
+    .settings .specific-settings input[type=range]{
+        width: 80px;
+    }
+    .settings .general>div>div{
+        width: 80px;
+        font-size: 1.2rem;
+        margin: 5px;
+    }
+    .settings .general div:last-of-type{
+        margin-left: 5px;
+    }
+    .settings #filters{
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    .settings .specific-settings .cars,
+    .settings .specific-settings .parkings{
+        width: 100%;
+    }
+    .settings .specific-settings .parkings{
+        margin-top: 10px;
+    }
+    
 }

@@ -37,6 +37,9 @@ export default class SampleMap extends Component {
             
         }
     }
+    shouldComponentUpdate(nextProps,nextState){
+        return  this.props.cars.length!=nextProps.cars.length || this.props.parkings.length!=nextProps.parkings.length || this.props.showCars!=nextProps.showCars|| this.props.showParkings!=nextProps.showParkings|| this.props.showPois!=nextProps.showPois
+    }
 render() {
     let cars,parkings,pois;
     var self = this;
@@ -55,6 +58,7 @@ render() {
             )
         }) : []
     }
+  
     if(this.props.parkingsLoaded){
         parkings = this.props.showParkings? this.props.parkings.map(function(elem,index){
             return(

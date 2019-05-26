@@ -18,6 +18,8 @@ class App extends React.Component{
             minBatteryLevel:0,
             minRange:0,
             maxRange:0,
+            minSpaces:0,
+            maxSpaces:0
             
         }
         this.carsToggler = this.carsToggler.bind(this)
@@ -26,7 +28,7 @@ class App extends React.Component{
         this.inputChange = this.inputChange.bind(this)
     }
     componentDidMount(){
-        let tmpMaxRange=0;
+        let tmpMaxRange=0,tmpMaxSpaces=0;
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE")
             .then(response=>response.json())
             .then(function(data){
@@ -45,11 +47,17 @@ class App extends React.Component{
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING")
             .then(response=>response.json())
             .then(function(data){
-            console.log("parking",data.objects);
-            return data
-        })
+                tmpMaxSpaces = data.objects[0].availableSpacesCount;
+                for (let x in data.objects){
+                    if(data.objects[x].availableSpacesCount>tmpMaxSpaces){
+                        tmpMaxSpaces = data.objects[x].availableSpacesCount;
+                    }
+                }
+                console.log("parking",data.objects);
+                return data
+            })
             .then((data)=>{
-            this.setState({parkings:data.objects,parkingsLoaded:true})
+            this.setState({parkings:data.objects,parkingsLoaded:true,maxSpaces:tmpMaxSpaces})
         })
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=POI")
             .then(response=>response.json())
@@ -60,6 +68,7 @@ class App extends React.Component{
             .then((data)=>{
                 this.setState({pois:data.objects,poisLoaded:true})
             })
+        
         }
     
     carsToggler(){
