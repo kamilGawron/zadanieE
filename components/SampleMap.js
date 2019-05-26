@@ -64,7 +64,8 @@ export default class SampleMap extends Component {
         })
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=POI")
             .then(response=>response.json())
-            .then(function(data){
+            .then(data=>{
+                this.props.setCarsCounter();
                 console.log("POI",data.objects);
                 return data
             })
@@ -73,13 +74,17 @@ export default class SampleMap extends Component {
             })
         }
    componentDidUpdate(){
-       console.log("up",this.state.showCars)
+       
    }
    
 render() {
     let cars,parkings,pois;
+    var self = this;
     if(this.state.carsLoaded){
-        cars = this.props.showCars?  this.state.cars.map(function(elem,index){
+        let tmpCars = this.state.cars.filter(function(elem){
+            return elem.batteryLevelPct>self.props.minBatteryLevel
+        })
+        cars = this.props.showCars?  tmpCars.map(function(elem,index){
             return(
                 <Marker 
                     key={index} 
@@ -94,7 +99,7 @@ render() {
         }) : []
     }
     if(this.state.parkingsLoaded){
-        parkings = this.state.parkings.map(function(elem,index){
+        parkings = this.props.showParkings? this.state.parkings.map(function(elem,index){
             return(
                 <Marker 
                     key={index} 
@@ -106,10 +111,10 @@ render() {
                     </Popup>
                 </Marker>
             )
-        })
+        }) : []
     }
     if(this.state.poisLoaded){
-        pois = this.state.pois.map(function(elem,index){
+        pois = this.props.showPois? this.state.pois.map(function(elem,index){
             return(
                 <Marker 
                     key={index} 
@@ -121,7 +126,7 @@ render() {
                     </Popup>
                 </Marker>
             )
-        })
+        }) :[]
     }
     
     
