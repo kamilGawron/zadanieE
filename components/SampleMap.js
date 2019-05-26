@@ -34,54 +34,14 @@ export default class SampleMap extends Component {
             lat: 51.919438,
             lng: 19.145136,
             zoom: 7,
-            cars:[],
-            carsLoaded:false,
-            parkings:[],
-            parkingsLoaded:false,
-            pois:[],
-            poisLoaded:false,
+            
         }
-}
-    componentDidMount(){
-        
-        fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE")
-        .then(response=>response.json())
-        .then(function(data){
-            console.log("Cars",data.objects);
-            return data
-        })
-        .then((data)=>{
-            this.setState({cars:data.objects,carsLoaded:true})
-        })
-        fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING")
-            .then(response=>response.json())
-            .then(function(data){
-                console.log("parking",data.objects);
-                return data
-            })
-            .then((data)=>{
-                this.setState({parkings:data.objects,parkingsLoaded:true})
-        })
-        fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=POI")
-            .then(response=>response.json())
-            .then(data=>{
-                this.props.setCarsCounter();
-                console.log("POI",data.objects);
-                return data
-            })
-            .then((data)=>{
-                this.setState({pois:data.objects,poisLoaded:true})
-            })
-        }
-   componentDidUpdate(){
-       
-   }
-   
+    }
 render() {
     let cars,parkings,pois;
     var self = this;
-    if(this.state.carsLoaded){
-        let tmpCars = this.state.cars.filter(function(elem){
+    if(this.props.carsLoaded){
+        let tmpCars = this.props.cars.filter(function(elem){
             return elem.batteryLevelPct>self.props.minBatteryLevel
         })
         cars = this.props.showCars?  tmpCars.map(function(elem,index){
@@ -98,8 +58,8 @@ render() {
             )
         }) : []
     }
-    if(this.state.parkingsLoaded){
-        parkings = this.props.showParkings? this.state.parkings.map(function(elem,index){
+    if(this.props.parkingsLoaded){
+        parkings = this.props.showParkings? this.props.parkings.map(function(elem,index){
             return(
                 <Marker 
                     key={index} 
@@ -113,8 +73,8 @@ render() {
             )
         }) : []
     }
-    if(this.state.poisLoaded){
-        pois = this.props.showPois? this.state.pois.map(function(elem,index){
+    if(this.props.poisLoaded){
+        pois = this.props.showPois? this.props.pois.map(function(elem,index){
             return(
                 <Marker 
                     key={index} 
@@ -131,7 +91,6 @@ render() {
     
     
     return (
-        this.state.carsLoaded?
         <Map center={[this.state.lat,this.state.lng]} zoom={this.state.zoom}>
             <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -148,8 +107,6 @@ render() {
                 {pois}
             </MarkerClusterGroup>
         </Map>
-        :
-        <div>loading</div>
     )
 }
 }

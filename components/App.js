@@ -6,12 +6,12 @@ class App extends React.Component{
     constructor(){
         super();
         this.state={
-            carsCounter:0,
-            filteredCarsCounter:0,
-            parkingsCounter:0,
-            filteredParkingsCounter:0,
-            poisCounter:0,
-            filteredPoisCounter:0,
+            cars:[],
+            carsLoaded:false,
+            parkings:[],
+            parkingsLoaded:false,
+            pois:[],
+            poisLoaded:false,
             showCars:true,
             showParkings:true,
             showPois:true,
@@ -21,12 +21,39 @@ class App extends React.Component{
         this.parkingsToggler = this.parkingsToggler.bind(this)
         this.poisToggler = this.poisToggler.bind(this)
         this.minBatteryLevelChange = this.minBatteryLevelChange.bind(this)
-        this.setCarsCounter = this.setCarsCounter.bind(this)
     }
+    componentDidMount(){
+
+        fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE")
+            .then(response=>response.json())
+            .then(function(data){
+            console.log("Cars",data.objects);
+            return data
+        })
+            .then((data)=>{
+            this.setState({cars:data.objects,carsLoaded:true})
+        })
+        fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING")
+            .then(response=>response.json())
+            .then(function(data){
+            console.log("parking",data.objects);
+            return data
+        })
+            .then((data)=>{
+            this.setState({parkings:data.objects,parkingsLoaded:true})
+        })
+        fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=POI")
+            .then(response=>response.json())
+            .then(data=>{
+                console.log("POI",data.objects);
+                return data
+            })
+            .then((data)=>{
+                this.setState({pois:data.objects,poisLoaded:true})
+            })
+        }
     
     carsToggler(){
-        console.log("car")
-
         this.setState(prev=>{
             return{
                 showCars:!prev.showCars
@@ -34,7 +61,6 @@ class App extends React.Component{
         })
     }
     parkingsToggler(){
-        console.log("parking")
         this.setState(prev=>{
             return{
                 showParkings:!prev.showParkings
@@ -42,7 +68,6 @@ class App extends React.Component{
         })
     }
     poisToggler(){
-        console.log("poi")
         this.setState(prev=>{
             return{
                 showPois:!prev.showPois
@@ -52,31 +77,24 @@ class App extends React.Component{
     minBatteryLevelChange(e){
         this.setState({minBatteryLevel:e.target.value})
     }
-    setCarsCounter(){
-        console.log("sarcout")
-    }
+    
     render(){
         return(
+            this.state.carsLoaded&&this.state.parkingsLoaded&&this.state.poisLoaded?
             <div>
                <DisplaySettings
+                  {...this.state}
                    carsToggler={this.carsToggler}
                    parkingsToggler={this.parkingsToggler}
                    poisToggler={this.poisToggler}
-                   showCars={this.state.showCars}
-                   showParkings={this.state.showParkings} 
-                   showPois={this.state.showPois}
-                   minBatteryLevel={this.state.minBatteryLevel}
                    minBatteryLevelChange={this.minBatteryLevelChange}
                    
                />
                 <SampleMap
-                    showCars={this.state.showCars} 
-                    showParkings={this.state.showParkings} 
-                    minBatteryLevel={this.state.minBatteryLevel}
-                    showPois={this.state.showPois}
-                    setCarsCounter={this.setCarsCounter}
+                    {...this.state}
                 />
             </div>
+            : <div>loading...</div>
         )
     }
 }
