@@ -123,7 +123,12 @@ class App extends React.Component{
                     cars={tmpCars}
                 />
             </div>
-            : <div>loading...</div>
+            : <div className="loading">
+               <div>
+                   loading...
+               </div>
+               <div className="spiner"></div>
+              </div>
         )
     }
 }

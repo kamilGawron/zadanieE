@@ -5,13 +5,56 @@ body{
     padding: 0;
     margin: 0;
 }
-.leaflet-container{
+.loading{
     height: 100vh;
     width: 100vw;
-    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.9);
+    font-size: 2rem;
+    color: #ffffff;
+    text-transform: uppercase;
 }
-.leaflet-control{
-    top:100px;
+.loading .spiner{
+    margin-top: 30px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 5px solid rgba(0,0,0,0);
+    border-bottom: 5px solid #2196F3;
+    -webkit-animation: spiner .7s ease-in-out;
+    animation: spiner .8s ease-in-out infinite;
+}
+@-webkit-keyframes spiner{
+    0%{
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100%{
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+@keyframes spiner{
+    0%{
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100%{
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
 }
 .settings{
     z-index: 1000;
@@ -226,6 +269,40 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
+.leaflet-container{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+.leaflet-control{
+    top:100px;
+}
+.leaflet-popup-content-wrapper{
+    background-color: rgba(0,0,0,.9);
+    color: #ffffff;
+}
+.leaflet-popup-content h3{
+    margin: 5px 0;
+    text-align: center;
+    color: #2196F3;
+}
+.leaflet-popup-content .car>div:first-of-type{
+    text-align: center;
+    font-weight: bold;
+    margin:0 0 5px 0;
+}
+.leaflet-popup-content .content .title{
+    font-weight: bold;
+    margin-right: 5px;
+}
+.leaflet-popup-content .poi>div:first-of-type{
+    text-align: center;
+    margin-bottom: 5px;
+    
+}
+.leaflet-popup-tip{
+    background-color: rgba(0,0,0,.9);
+}
 
 @media all and (max-width:768px){
     .settings #filters{

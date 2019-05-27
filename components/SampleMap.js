@@ -6,6 +6,9 @@ import L from 'leaflet'
 import carPng from  '../img/car.png'
 import parkingPng from  '../img/parking.png'
 import poiPng from  '../img/poi.png'
+import CustomCarPopup from './CustomCarPopup'
+import CustomParkingPopup from './CustomParkingPopup'
+import CustomPoiPopup from './CustomPoiPopup'
 
 var carIcon = L.icon({
     iconUrl: carPng,
@@ -54,9 +57,8 @@ render() {
                     position={[elem.location.latitude,elem.location.longitude]}
                     icon ={carIcon}
                     >
-                    <Popup>
-                        <React.Fragment>{elem.name}</React.Fragment>
-                    </Popup>
+                    <CustomCarPopup {...elem} />
+
                 </Marker>
             )
         }) : []
@@ -70,9 +72,7 @@ render() {
                     position={[elem.location.latitude,elem.location.longitude]}
                     icon ={parkingIcon}
                     >
-                    <Popup>
-                        <React.Fragment>{elem.name}</React.Fragment>
-                    </Popup>
+                    <CustomParkingPopup {...elem} />
                 </Marker>
             )
         }) : []
@@ -85,9 +85,7 @@ render() {
                     position={[elem.location.latitude,elem.location.longitude]}
                     icon ={poiIcon}
                     >
-                    <Popup>
-                        <React.Fragment>{elem.name}</React.Fragment>
-                    </Popup>
+                    <CustomPoiPopup {...elem} />
                 </Marker>
             )
         }) :[]
