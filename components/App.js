@@ -22,7 +22,6 @@ class App extends React.Component{
             maxRange:0,
             minSpaces:0,
             maxSpaces:0
-            
         }
         this.carsToggler = this.carsToggler.bind(this)
         this.parkingsToggler = this.parkingsToggler.bind(this)
@@ -33,44 +32,31 @@ class App extends React.Component{
         let tmpMaxRange=0,tmpMaxSpaces=0;
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE")
             .then(response=>response.json())
-            .then(function(data){
+            .then((data)=>{
                 tmpMaxRange = data.objects[0].rangeKm;
                 for (let x in data.objects){
                     if(data.objects[x].rangeKm>tmpMaxRange){
                         tmpMaxRange = data.objects[x].rangeKm;
                     }
                 }
-                console.log("Cars",data.objects);
-                return data
+                this.setState({cars:data.objects,carsLoaded:true,maxRange:tmpMaxRange})
             })
-            .then((data)=>{
-            this.setState({cars:data.objects,carsLoaded:true,maxRange:tmpMaxRange})
-        })
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING")
             .then(response=>response.json())
-            .then(function(data){
+            .then((data)=>{
                 tmpMaxSpaces = data.objects[0].availableSpacesCount;
                 for (let x in data.objects){
                     if(data.objects[x].availableSpacesCount>tmpMaxSpaces){
                         tmpMaxSpaces = data.objects[x].availableSpacesCount;
                     }
                 }
-                console.log("parking",data.objects);
-                return data
+                this.setState({parkings:data.objects,parkingsLoaded:true,maxSpaces:tmpMaxSpaces})
             })
-            .then((data)=>{
-            this.setState({parkings:data.objects,parkingsLoaded:true,maxSpaces:tmpMaxSpaces})
-        })
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=POI")
             .then(response=>response.json())
-            .then(data=>{
-                console.log("POI",data.objects);
-                return data
-            })
             .then((data)=>{
                 this.setState({pois:data.objects,poisLoaded:true})
             })
-        
         }
     
     carsToggler(){
@@ -97,38 +83,43 @@ class App extends React.Component{
     inputChange(e){
         this.setState({[e.target.name]:e.target.value})
     }
-    
     render(){
-        let tmpCars;
+        let tmpCars,tmpParkings;
         if(this.state.carsLoaded){
             tmpCars = this.state.cars.filter(elem=>{
                 return elem.batteryLevelPct>=this.state.minBatteryLevel&&elem.rangeKm>=this.state.minRange
-
+            })
+        }
+        if(this.state.parkingsLoaded){
+            tmpParkings = this.state.parkings.filter(elem=>{
+                return elem.availableSpacesCount>=this.state.minSpaces
             })
         }
         return(
             this.state.carsLoaded&&this.state.parkingsLoaded&&this.state.poisLoaded?
-            <div>
-               <DisplaySettings
-                  {...this.state}
-                   carsToggler={this.carsToggler}
-                   parkingsToggler={this.parkingsToggler}
-                   poisToggler={this.poisToggler}
-                   inputChange={this.inputChange}
-                   filterCarLen={tmpCars.length}
-                   
-               />
-                <SampleMap
-                    {...this.state}
-                    cars={tmpCars}
-                />
-            </div>
-            : <div className="loading">
-               <div>
-                   loading...
-               </div>
-               <div className="spiner"></div>
-              </div>
+                <div>
+                   <DisplaySettings
+                      {...this.state}
+                       carsToggler={this.carsToggler}
+                       parkingsToggler={this.parkingsToggler}
+                       poisToggler={this.poisToggler}
+                       inputChange={this.inputChange}
+                       filterCarLen={tmpCars.length}
+                       filterParkingLen={tmpParkings.length}
+                   />
+                    <SampleMap
+                        {...this.state}
+                        cars={tmpCars}
+                        parkings={tmpParkings}
+                    />
+                </div>
+                : 
+                <div className="loading">
+                   <div>
+                       loading...
+                   </div>
+                   <div className="spiner"></div>
+                </div>
         )
     }
 }

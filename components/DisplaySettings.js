@@ -11,8 +11,6 @@ function DisplaySettings(props){
     },[])
     return(
         <div className="settings">
-              
-            {/*GENERAL SETTINGS*/}
             <div className="general">
                <h6>Wybierz elementy jakie chcesz zobaczyć na mapie:</h6>
                <div>
@@ -44,10 +42,8 @@ function DisplaySettings(props){
                </div>
                
             </div>
-            
-            {/*SPECIFIC SETTINGS*/}
             <div id="filters" className="specific-settings">
-                {/*CARS SETTINGS*/}
+                <div onClick={showFilters} className="close">&#9747;</div>
                 <div className="cars">
                     <h6>Filtruj samochody:</h6>
                     <label htmlFor="minBatteryLevelInput">
@@ -72,7 +68,6 @@ function DisplaySettings(props){
                     }
                 </div>
 
-                {/*PARKINGS SETTINGS*/}
                 <div className="parkings">
                     <h6>Filtruj parkingi:</h6>
                     <label htmlFor="minSpacesInput">Minimalna dostępna liczba miejsc</label>
@@ -80,9 +75,15 @@ function DisplaySettings(props){
                         <input id ="minSpacesInput" name="minSpaces" onChange={props.inputChange} min="0" max={props.maxSpaces}id="minSpacesInput" type="range" value={props.minSpaces}/>
                         <input name="minSpaces" onChange={props.inputChange} min="0" max={props.maxSpaces} id="minSpacesInput" type="number" value={props.minSpaces}/>
                     </div>
+                    {
+                        props.minSpaces!=0?
+                            props.filterParkingLen==props.parkings.length?
+                            <span>Wszystkie parkingi spełniają określone kryteria</span>:
+                            <span>znaleziono: {props.filterParkingLen}</span> 
+                        : <span>&nbsp;</span>
+                    }
                 </div>
 
-                {/*POIS SETTINGS*/}
             </div>
         </div>
        

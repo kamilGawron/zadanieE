@@ -7,14 +7,14 @@ function CustomParkingPopup(props){
             <div className="parking">
                 <h3>{props.name}</h3>
                 <div className="content">
-                        <div>
-                            <span className="title">
-                                Adres:
-                            </span>
-                            <span className="desc">
-                                {props.address.street}&nbsp;{props.address.house}
-                            </span>
-                        </div>
+                    <div>
+                        <span className="title">
+                            Adres:
+                        </span>
+                        <span className="desc">
+                            {props.address.street}&nbsp;{props.address.house}
+                        </span>
+                    </div>
                     <div>
                         <span className="title">
                             Liczba miejsc:
