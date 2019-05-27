@@ -1,15 +1,19 @@
 {
+    "homepage": "https://kamilgawron.github.io/zadanie",
   "name": "enigma",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "leaflet": "^1.5.1",
     "leaflet.markercluster": "^1.4.1",
     "react": "^16.8.6",

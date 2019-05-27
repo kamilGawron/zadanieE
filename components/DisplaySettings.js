@@ -14,7 +14,7 @@ function DisplaySettings(props){
               
             {/*GENERAL SETTINGS*/}
             <div className="general">
-               <h6>Wybierz jakie elementy chcesz zobaczyć na mapie:</h6>
+               <h6>Wybierz elementy jakie chcesz zobaczyć na mapie:</h6>
                <div>
                    <div>
                        <span>Samochody ({props.cars.length})</span>
