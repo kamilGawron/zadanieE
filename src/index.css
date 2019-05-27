@@ -83,6 +83,7 @@ body{
 .settings .general div .filters-icon{
     font-size: 2.4rem;
     cursor: pointer;
+    color: #ffffff;
 }
 
 .settings #filters{
@@ -232,15 +233,21 @@ input:checked + .slider:before {
         border-radius: 0;
     }
     .settings .specific-settings input[type=range]{
-        width: 80px;
+        width: 120px;
+    }
+    .settings .general>div{
+        padding: 0;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
     }
     .settings .general>div>div{
-        width: 80px;
-        font-size: 1.2rem;
-        margin: 5px;
+        width: 90px;
+        font-size: 1.1rem;
+        margin: 0px;
     }
     .settings .general div:last-of-type{
-        margin-left: 5px;
+        margin-left: 0px;
+        
     }
     .settings #filters{
         -webkit-box-orient: vertical;

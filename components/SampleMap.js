@@ -1,25 +1,28 @@
 
 import React, { Component } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
-import MarkerClusterGroup from 'react-leaflet-markercluster';
+import MarkerClusterGroup from 'react-leaflet-markercluster'
 import L from 'leaflet'
+import carPng from  '../img/car.png'
+import parkingPng from  '../img/parking.png'
+import poiPng from  '../img/poi.png'
 
 var carIcon = L.icon({
-    iconUrl: '../img/car.png',
+    iconUrl: carPng,
 
     iconSize:     [32, 32], // size of the icon
     iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, -24] // point from which the popup should open relative to the iconAnchor
 });
 var parkingIcon = L.icon({
-    iconUrl: '../img/parking.png',
+    iconUrl: parkingPng,
 
     iconSize:     [32, 32], // size of the icon
     iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location
     popupAnchor:  [0, -24] // point from which the popup should open relative to the iconAnchor
 });
 var poiIcon = L.icon({
-    iconUrl: '../img/poi.png',
+    iconUrl: poiPng,
 
     iconSize:     [32, 32], // size of the icon
     iconAnchor:   [16, 16], // point of the icon which will correspond to marker's location

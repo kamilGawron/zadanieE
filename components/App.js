@@ -1,6 +1,8 @@
 import React from 'react'
 import SampleMap from './SampleMap'
 import DisplaySettings from './DisplaySettings'
+import "../node_modules/leaflet/dist/leaflet.css"
+import "../node_modules/react-leaflet-markercluster/dist/styles.min.css"
 
 class App extends React.Component{
     constructor(){
