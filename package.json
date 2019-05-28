@@ -4,17 +4,29 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|jpg|png)$": "<rootDir>/src/empty-module.js"
+    }
+  },
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-jest": "^24.8.0",
+    "chai": "^4.2.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.2",
+    "enzyme-to-json": "^3.3.5",
     "file-loader": "^3.0.1",
     "gh-pages": "^2.0.1",
+    "jest": "^24.8.0",
     "leaflet": "^1.5.1",
     "leaflet.markercluster": "^1.4.1",
     "react": "^16.8.6",

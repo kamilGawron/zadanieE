@@ -17,6 +17,7 @@ class App extends React.Component{
             showCars:true,
             showParkings:true,
             showPois:true,
+            fetchErr:false,
             minBatteryLevel:0,
             minRange:0,
             maxRange:0,
@@ -43,6 +44,9 @@ class App extends React.Component{
                 }
                 this.setState({cars:data.objects,carsLoaded:true,maxRange:tmpMaxRange})
             })
+        .catch(err=>{
+            this.setState({fetchErr:true})
+        })
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING")
             .then(response=>response.json())
             .then((data)=>{
@@ -54,10 +58,16 @@ class App extends React.Component{
                 }
                 this.setState({parkings:data.objects,parkingsLoaded:true,maxSpaces:tmpMaxSpaces})
             })
+            .catch(err=>{
+                this.setState({fetchErr:true})
+            })
         fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=POI")
             .then(response=>response.json())
             .then((data)=>{
                 this.setState({pois:data.objects,poisLoaded:true})
+            })
+            .catch(err=>{
+                this.setState({fetchErr:true})
             })
         }
     
@@ -121,12 +131,18 @@ class App extends React.Component{
                     />
                 </div>
                 : 
-                <div className="loading">
-                   <div>
-                       loading...
-                   </div>
-                   <div className="spiner"></div>
-                </div>
+                this.state.fetchErr?
+                    <div className="error">
+                        Wystąpił błąd podczas pobierania danych.
+                    </div>
+                    :
+                    <div className="loading">
+                       <div>
+                           ładowanie
+                       </div>
+                       <div className="spiner"></div>
+                    </div>
+                
         )
     }
 }

@@ -2,15 +2,14 @@ import React from 'react'
 import {Marker} from 'react-leaflet'
 
 
-function CustomMarker(props){
+function CustomMarker({index,location,icon,popup}){
     return(
         <Marker 
-            key={props.index} 
-            position={[props.location.latitude,props.location.longitude]}
-            icon ={props.icon}
+            key={index} 
+            position={[location.latitude,location.longitude]}
+            icon ={icon}
         >
-            {props.popup}
-
+            <React.Fragment>{popup}</React.Fragment>
         </Marker>
     )
 }

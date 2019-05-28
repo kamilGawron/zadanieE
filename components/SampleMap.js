@@ -11,7 +11,6 @@ import carIconUnavailable from './icons/carIconUnavailable'
 import parkingIcon from './icons/parkingIcon'
 import poiIcon from './icons/poiIcon'
 
-
 export default class SampleMap extends Component {
     constructor(props){
         super(props);
