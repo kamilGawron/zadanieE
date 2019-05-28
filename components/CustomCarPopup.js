@@ -11,14 +11,16 @@ function CustomCarPopup(props){
                     <div style={{color:"red"}}>Niedostępny</div>
                 }
                 <div className="content">
-                    <div>
-                        <span className="title">
-                            Adres:
-                        </span>
-                        <span className="desc">
-                            {props.address}
-                        </span>
-                    </div>
+                    {props.address?
+                        <div>
+                            <span className="title">
+                                Adres:
+                            </span>
+                            <span className="desc">
+                                {props.address}
+                            </span>
+                        </div> : ""
+                    }
                     <div>
                         <span className="title">
                             Poziom baterii:

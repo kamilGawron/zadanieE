@@ -9,6 +9,7 @@ function DisplaySettings(props){
     useEffect(()=>{
         document.getElementById("filters").style.display="none";
     },[])
+    
     return(
         <div className="settings">
             <div className="general">
@@ -46,17 +47,40 @@ function DisplaySettings(props){
                 <div onClick={showFilters} className="close">&#9747;</div>
                 <div className="cars">
                     <h6>Filtruj samochody:</h6>
+                    <div>
+                        <span>Tylko dostępne</span>
+                        <label className="switch">
+                            <input name="available" id="availableSwitcher" type="checkbox" onChange={props.availableToggler} defaultChecked/>
+                            <span className="slider round"></span>
+                        </label>
+                    </div>
                     <label htmlFor="minBatteryLevelInput">
                         Minimalny procentowy poziom baterii samochodu
                     </label>
                     <div>
                         <input id="minBatteryLevelInput" name="minBatteryLevel" onChange={props.inputChange} min="0" max="100" type="range" value={props.minBatteryLevel}/>
                         <input name="minBatteryLevel" onChange={props.inputChange} min="0" max="100" type="number" value={props.minBatteryLevel}/>
-                    </div>
+                        {props.minBatteryLevel!=0?
+                            <span onClick={()=>{
+                                    props.inputChange({target:{name:"minBatteryLevel",value:0}})
+                                }} className="clear-input">&#9747;
+                            </span>
+                            :
+                            <span className="clear-input">&nbsp;</span>
+                        }
+                                            </div>
                     <label htmlFor="minRangeInput">Minimalny zasięg kilometrów</label>
                     <div>
                         <input id="minRangeInput" name="minRange" onChange={props.inputChange} min="0" max={props.maxRange} type="range" value={props.minRange}/>
                         <input name="minRange" onChange={props.inputChange} min="0" max={props.maxRange} type="number" value={props.minRange}/>
+                        {props.minRange!=0? 
+                            <span onClick={()=>{
+                                    props.inputChange({target:{name:"minRange",value:0}})
+                                }} className="clear-input">&#9747;
+                            </span>
+                            :
+                            <span className="clear-input">&nbsp;</span>
+                        }
                     </div>
                     {
                      props.minBatteryLevel!=0||
@@ -74,6 +98,14 @@ function DisplaySettings(props){
                     <div>
                         <input id ="minSpacesInput" name="minSpaces" onChange={props.inputChange} min="0" max={props.maxSpaces}id="minSpacesInput" type="range" value={props.minSpaces}/>
                         <input name="minSpaces" onChange={props.inputChange} min="0" max={props.maxSpaces} id="minSpacesInput" type="number" value={props.minSpaces}/>
+                        {props.minSpaces!=0?
+                            <span onClick={()=>{
+                                    props.inputChange({target:{name:"minSpaces",value:0}})
+                                }} className="clear-input">&#9747;
+                            </span>
+                            :
+                            <span className="clear-input">&nbsp;</span>
+                        }
                     </div>
                     {
                         props.minSpaces!=0?

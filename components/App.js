@@ -21,12 +21,14 @@ class App extends React.Component{
             minRange:0,
             maxRange:0,
             minSpaces:0,
-            maxSpaces:0
+            maxSpaces:0,
+            carStatus:""
         }
         this.carsToggler = this.carsToggler.bind(this)
         this.parkingsToggler = this.parkingsToggler.bind(this)
         this.poisToggler = this.poisToggler.bind(this)
         this.inputChange = this.inputChange.bind(this)
+        this.availableToggler = this.availableToggler.bind(this)
     }
     componentDidMount(){
         let tmpMaxRange=0,tmpMaxSpaces=0;
@@ -83,11 +85,15 @@ class App extends React.Component{
     inputChange(e){
         this.setState({[e.target.name]:e.target.value})
     }
+    availableToggler(e){
+        let status= e.target.checked? "AVAILABLE" :"";
+        this.setState({carStatus:status})
+    }
     render(){
         let tmpCars,tmpParkings;
         if(this.state.carsLoaded){
             tmpCars = this.state.cars.filter(elem=>{
-                return elem.batteryLevelPct>=this.state.minBatteryLevel&&elem.rangeKm>=this.state.minRange
+                return elem.batteryLevelPct>=this.state.minBatteryLevel&&elem.rangeKm>=this.state.minRange&&elem.status.includes(this.state.carStatus)
             })
         }
         if(this.state.parkingsLoaded){
@@ -106,6 +112,7 @@ class App extends React.Component{
                        inputChange={this.inputChange}
                        filterCarLen={tmpCars.length}
                        filterParkingLen={tmpParkings.length}
+                       availableToggler={this.availableToggler}
                    />
                     <SampleMap
                         {...this.state}
