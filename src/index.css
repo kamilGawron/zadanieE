@@ -1,11 +1,13 @@
-:root{
+:root {
     font-size: 10px;
 }
-body{
+
+body {
     padding: 0;
     margin: 0;
 }
-.loading{
+
+.loading {
     height: 100vh;
     width: 100vw;
     display: -webkit-box;
@@ -21,49 +23,55 @@ body{
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    background-color: rgba(0,0,0,.9);
+    background-color: rgba(0, 0, 0, .9);
     font-size: 2rem;
     color: #ffffff;
     text-transform: uppercase;
 }
-.loading .spiner{
+
+.loading .spiner {
     margin-top: 30px;
     height: 80px;
     width: 80px;
     border-radius: 50%;
-    border: 5px solid rgba(0,0,0,0);
+    border: 5px solid rgba(0, 0, 0, 0);
     border-bottom: 5px solid #2196F3;
     -webkit-animation: spiner .7s ease-in-out;
     animation: spiner .8s ease-in-out infinite;
 }
-@-webkit-keyframes spiner{
-    0%{
+
+@-webkit-keyframes spiner {
+    0% {
         -webkit-transform: rotate(0);
         transform: rotate(0);
     }
-    100%{
+
+    100% {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg)
     }
 }
-@keyframes spiner{
-    0%{
+
+@keyframes spiner {
+    0% {
         -webkit-transform: rotate(0);
         transform: rotate(0);
     }
-    100%{
+
+    100% {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg)
     }
 }
-.settings{
+
+.settings {
     z-index: 1000;
     position: absolute;
     top: 0;
     left: 0;
     height: 100px;
     width: 100%;
-    background-color: rgba(0,0,0,.9);
+    background-color: rgba(0, 0, 0, .9);
     border-bottom: 2px solid #2196F3;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -78,26 +86,29 @@ body{
     -ms-flex-align: center;
     align-items: center;
 }
-.settings .general{
+
+.settings .general {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex; 
-    -webkit-box-orient: vertical; 
-    -webkit-box-direction: normal; 
-    -ms-flex-direction: column; 
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-pack: center; 
-    -ms-flex-pack: center; 
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     color: #ffffff;
     font-size: 1.4rem;
 }
-.settings .general>h6{
+
+.settings .general > h6 {
     margin: 5px;
     text-align: center;
     font-size: 1.6rem;
 }
-.settings .general>div{
+
+.settings .general > div {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -105,7 +116,8 @@ body{
     -ms-flex-pack: center;
     justify-content: center;
 }
-.settings .general>div>div{
+
+.settings .general > div > div {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -119,11 +131,13 @@ body{
     margin: 10px;
     width: 100px;
 }
-.settings .general div:last-of-type{
+
+.settings .general div:last-of-type {
     margin-left: 50px;
-    
+
 }
-.settings .general div .filters-icon{
+
+.settings .general div .filters-icon {
     font-size: 2.4rem;
     cursor: pointer;
     color: #ffffff;
@@ -131,12 +145,14 @@ body{
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
-.settings .general div .filters-icon:hover{
+
+.settings .general div .filters-icon:hover {
     color: #2196F3;
 }
-.settings #filters{
+
+.settings #filters {
     position: absolute;
-    top:100px;
+    top: 100px;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 60%;
@@ -150,19 +166,17 @@ body{
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    background-color: rgba(0,0,0,.9);
+    background-color: rgba(0, 0, 0, .9);
     padding: 10px;
-    padding-left: 50px;
     border-radius: 20px;
     color: #ffffff;
     font-size: 1.4rem;
-
-    
 }
-.settings .specific-settings .close{
+
+.settings .specific-settings .close {
     position: absolute;
     right: 20px;
-    top:20px;
+    top: 20px;
     font-size: 2.5rem;
     font-weight: bold;
     cursor: pointer;
@@ -171,34 +185,36 @@ body{
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
-.settings .specific-settings .close:hover{
+
+.settings .specific-settings .close:hover {
     color: #2196F3;
 }
+
 .settings .specific-settings input::-webkit-outer-spin-button,
 .settings .specific-settings input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
-    margin: 0; 
+    margin: 0;
 }
 
-.settings .specific-settings input[type=number]{
+.settings .specific-settings input[type=number] {
     width: 40px;
     border: none;
     background-color: transparent;
     color: #ffffff;
     border-bottom: 1px solid #2196F3;
-    -moz-appearance:textfield;
+    -moz-appearance: textfield;
     text-align: center;
     outline: none;
 }
+
 .settings .specific-settings input[type=range]::-webkit-slider-thumb,
 .settings .specific-settings input[type=range]::-moz-range-thumb,
-.settings .specific-settings input[type=range]::-ms-thumb{
-   color: red;
+.settings .specific-settings input[type=range]::-ms-thumb {
+    color: red;
 }
 
 .settings .specific-settings .cars,
-.settings .specific-settings .parkings{
+.settings .specific-settings .parkings {
     margin: 0;
     width: 50%;
     display: -webkit-box;
@@ -212,8 +228,9 @@ body{
     -ms-flex-align: center;
     align-items: center;
 }
-.settings .specific-settings .cars>div,
-.settings .specific-settings .parkings>div{
+
+.settings .specific-settings .cars > div,
+.settings .specific-settings .parkings > div {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -221,22 +238,26 @@ body{
     -ms-flex-align: center;
     align-items: center;
 }
-.settings .specific-settings .cars>div .switch{
+
+.settings .specific-settings .cars > div .switch {
     top: 0;
     left: 10px;
 }
+
 .settings .specific-settings .cars h6,
-.settings .specific-settings .parkings h6{
+.settings .specific-settings .parkings h6 {
     margin: 0 0 10px 0;
     font-size: 1.6rem;
 }
-.settings .specific-settings div>span{
+
+.settings .specific-settings div > span {
     margin: 10px 0;
     font-weight: bold;
     color: #2196F3;
     font-size: 1.4rem;
 }
-.settings .specific-settings .clear-input{
+
+.settings .specific-settings .clear-input {
     color: #ffffff;
     cursor: pointer;
     height: 20px;
@@ -244,15 +265,17 @@ body{
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
-.settings .specific-settings .clear-input:hover{
+
+.settings .specific-settings .clear-input:hover {
     color: #2196F3;
 }
+
 .switch {
     position: relative;
     display: inline-block;
     width: 46px;
     height: 25px;
-    top:5px;
+    top: 5px;
 }
 
 .switch input {
@@ -261,7 +284,6 @@ body{
     height: 0;
 }
 
-/* The slider */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -300,7 +322,6 @@ input:checked + .slider:before {
     transform: translateX(22px);
 }
 
-/* Rounded sliders */
 .slider.round {
     border-radius: 34px;
 }
@@ -309,82 +330,100 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-.leaflet-container{
+.leaflet-container {
     height: 100vh;
     width: 100vw;
     margin: 0;
 }
-.leaflet-control{
-    top:100px;
+
+.leaflet-control {
+    top: 100px;
+    display: block;
 }
-.leaflet-popup-content-wrapper{
-    background-color: rgba(0,0,0,.9);
+
+.leaflet-popup-content-wrapper {
+    background-color: rgba(0, 0, 0, .9);
     color: #ffffff;
 }
-.leaflet-popup-content h3{
+
+.leaflet-popup-content h3 {
     margin: 5px 0;
     text-align: center;
     color: #2196F3;
 }
-.leaflet-popup-content .car>div:first-of-type{
+
+.leaflet-popup-content .car > div:first-of-type {
     text-align: center;
     font-weight: bold;
-    margin:0 0 5px 0;
+    margin: 0 0 5px 0;
 }
-.leaflet-popup-content .content .title{
+
+.leaflet-popup-content .content .title {
     font-weight: bold;
     margin-right: 5px;
 }
-.leaflet-popup-content .poi>div:first-of-type{
+
+.leaflet-popup-content .poi > div:first-of-type {
     text-align: center;
     margin-bottom: 5px;
-    
+
 }
-.leaflet-popup-tip{
-    background-color: rgba(0,0,0,.9);
+
+.leaflet-popup-tip {
+    background-color: rgba(0, 0, 0, .9);
 }
-.leaflet-container a.leaflet-popup-close-button{
+
+.leaflet-container a.leaflet-popup-close-button {
     color: #ffffff;
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
-.leaflet-container a.leaflet-popup-close-button:hover{
-    color:  #2196F3;
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+    color: #2196F3;
 }
-@media all and (max-width:768px){
-    .settings #filters{
+
+@media all and (max-width:768px) {
+    .settings #filters {
         width: 100%;
         border-radius: 0;
     }
-    .settings .specific-settings input[type=range]{
+
+    .settings .specific-settings input[type=range] {
         width: 120px;
     }
-    .settings .general>div{
+
+    .settings .general > div {
         padding: 0;
         -webkit-box-pack: start;
         -ms-flex-pack: start;
     }
-    .settings .general>div>div{
+
+    .settings .general > div > div {
         width: 90px;
         font-size: 1.1rem;
         margin: 0px;
     }
-    .settings .general div:last-of-type{
+
+    .settings .general div:last-of-type {
         margin-left: 0px;
-        
+
     }
-    .settings #filters{
+
+    .settings #filters {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         flex-direction: column;
     }
+
     .settings .specific-settings .cars,
-    .settings .specific-settings .parkings{
+    .settings .specific-settings .parkings {
         width: 100%;
     }
-    .settings .specific-settings .parkings{
+
+    .settings .specific-settings .parkings {
         margin-top: 10px;
     }
-    
+
 }

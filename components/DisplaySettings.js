@@ -3,11 +3,17 @@ import React,{useEffect} from 'react'
 function showFilters(){
     let filters = document.getElementById("filters");
     filters.style.display = filters.style.display=="flex"? "none":"flex";
+    let zoom = document.getElementsByClassName("leaflet-control");
+    if(window.innerWidth<=768){
+        zoom[0].style.display = zoom[0].style.display=="block"? "none":"block";
+    }
 }
 
 function DisplaySettings(props){
     useEffect(()=>{
         document.getElementById("filters").style.display="none";
+        let zoom = document.getElementsByClassName("leaflet-control");
+        zoom[0].style.display="block";
     },[])
     
     return(
