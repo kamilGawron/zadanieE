@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CustomMarker from './CustomMarker';
+import CustomMarker from '../components/CustomMarker';
 import '../src/setupTest'
 import { expect } from 'chai';
 import {Marker} from 'react-leaflet'
-import emptyIcon from './icons/emptyIcon'
+import emptyIcon from '../services/icons/emptyIcon'
 
 
 const Icon = function(){

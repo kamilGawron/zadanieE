@@ -140,7 +140,7 @@ class App extends React.Component{
                        <div>
                            ładowanie
                        </div>
-                       <div className="spiner"></div>
+                       <div className="spinner"></div>
                     </div>
                 
         )

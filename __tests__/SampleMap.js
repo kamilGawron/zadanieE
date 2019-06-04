@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import '../src/setupTest'
 import { expect } from 'chai';
-import SampleMap from "./SampleMap"
+import SampleMap from "../components/SampleMap"
 import {Map} from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
 

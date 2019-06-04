@@ -1,0 +1,44 @@
+@media all and (max-width:768px) {
+    .settings #filters {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .settings .specific-settings input[type=range] {
+        width: 120px;
+    }
+
+    .settings .general > div {
+        padding: 0;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+    }
+
+    .settings .general > div > div {
+        width: 90px;
+        font-size: 1.1rem;
+        margin: 0px;
+    }
+
+    .settings .general div:last-of-type {
+        margin-left: 0px;
+
+    }
+
+    .settings #filters {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .settings .specific-settings .cars,
+    .settings .specific-settings .parkings {
+        width: 100%;
+    }
+
+    .settings .specific-settings .parkings {
+        margin-top: 10px;
+    }
+
+}

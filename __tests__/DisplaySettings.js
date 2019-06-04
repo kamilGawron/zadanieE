@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DisplaySettings from './DisplaySettings';
+import DisplaySettings from '../components/DisplaySettings';
 import '../src/setupTest'
 import { expect } from 'chai';
 

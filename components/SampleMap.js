@@ -6,10 +6,10 @@ import CustomCarPopup from './CustomCarPopup'
 import CustomParkingPopup from './CustomParkingPopup'
 import CustomPoiPopup from './CustomPoiPopup'
 import CustomMarker from './CustomMarker'
-import carIconAvailable from './icons/carIconAvailable'
-import carIconUnavailable from './icons/carIconUnavailable'
-import parkingIcon from './icons/parkingIcon'
-import poiIcon from './icons/poiIcon'
+import carIconAvailable from '../services/icons/carIconAvailable'
+import carIconUnavailable from '../services/icons/carIconUnavailable'
+import parkingIcon from '../services/icons/parkingIcon'
+import poiIcon from '../services/icons/poiIcon'
 
 export default class SampleMap extends Component {
     constructor(props){

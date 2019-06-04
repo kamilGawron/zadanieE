@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import CustomCarPopup from './CustomCarPopup';
+import CustomCarPopup from '../components/CustomCarPopup';
 import '../src/setupTest'
 import { expect } from 'chai';
 import {Popup} from 'react-leaflet'
