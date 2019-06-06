@@ -3,6 +3,15 @@ import SampleMap from './SampleMap'
 import DisplaySettings from './DisplaySettings'
 import "../node_modules/leaflet/dist/leaflet.css"
 import "../node_modules/react-leaflet-markercluster/dist/styles.min.css"
+import {callApi} from '../services/callApi'
+const vehicleUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE";
+const parkingUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING";
+const poiUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=POI";
+
+
+export function log(msg){
+    console.log(msg)
+}
 
 class App extends React.Component{
     constructor(){
@@ -23,7 +32,8 @@ class App extends React.Component{
             maxRange:0,
             minSpaces:0,
             maxSpaces:0,
-            carStatus:""
+            carStatus:"AVAILABLE",
+            msg:""
         }
         this.carsToggler = this.carsToggler.bind(this)
         this.parkingsToggler = this.parkingsToggler.bind(this)
@@ -33,43 +43,51 @@ class App extends React.Component{
     }
     componentDidMount(){
         let tmpMaxRange=0,tmpMaxSpaces=0;
-        fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE")
-            .then(response=>response.json())
-            .then((data)=>{
-                tmpMaxRange = data.objects[0].rangeKm;
-                for (let x in data.objects){
-                    if(data.objects[x].rangeKm>tmpMaxRange){
-                        tmpMaxRange = data.objects[x].rangeKm;
-                    }
+        callApi(vehicleUrl)
+        .then(data=>{
+            for(let x in data){
+                if(data[x].rangeKm>tmpMaxRange){
+                    tmpMaxRange=data[x].rangeKm;
                 }
-                this.setState({cars:data.objects,carsLoaded:true,maxRange:tmpMaxRange})
+            }
+            this.setState({
+                cars:data,
+                carsLoaded:true,
+                maxRange:tmpMaxRange
             })
+        })
         .catch(err=>{
             this.setState({fetchErr:true})
         })
-        fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING")
-            .then(response=>response.json())
-            .then((data)=>{
-                tmpMaxSpaces = data.objects[0].availableSpacesCount;
-                for (let x in data.objects){
-                    if(data.objects[x].availableSpacesCount>tmpMaxSpaces){
-                        tmpMaxSpaces = data.objects[x].availableSpacesCount;
-                    }
-                }
-                this.setState({parkings:data.objects,parkingsLoaded:true,maxSpaces:tmpMaxSpaces})
+        
+       callApi(parkingUrl)
+       .then(data=>{
+           for (let x in data){
+               if(data[x].availableSpacesCount>tmpMaxSpaces){
+                   tmpMaxSpaces = data[x].availableSpacesCount;
+               }
+           }
+           this.setState({
+               parkings:data,
+               parkingsLoaded:true,
+               maxSpaces:tmpMaxSpaces
+           })
+       })
+       .catch(err=>{
+           this.setState({fetchErr:true})
+       })
+        
+        callApi(poiUrl)
+        .then(data=>{
+            this.setState({
+                pois:data,
+                poisLoaded:true
             })
-            .catch(err=>{
-                this.setState({fetchErr:true})
-            })
-        fetch("https://dev.vozilla.pl/api-client-portal/map?objectType=POI")
-            .then(response=>response.json())
-            .then((data)=>{
-                this.setState({pois:data.objects,poisLoaded:true})
-            })
-            .catch(err=>{
-                this.setState({fetchErr:true})
-            })
-        }
+        })
+        .catch(err=>{
+            this.setState({fetchErr:true})
+        })
+    }
     
     carsToggler(){
         this.setState(prev=>{
