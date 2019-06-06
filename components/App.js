@@ -1,6 +1,11 @@
 import React from 'react'
 import SampleMap from './SampleMap'
 import DisplaySettings from './DisplaySettings'
+import {fetchCars,fetchParkings,fetchPois} from '../services/callApi'
+import {carsFilter,parkingsFilter} from '../services/filters'
+const carsUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE";
+const parkingsUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING";
+const poisUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=POI";
 import "../node_modules/leaflet/dist/leaflet.css"
 import "../node_modules/react-leaflet-markercluster/dist/styles.min.css"
 import '../style/index.css'
@@ -8,11 +13,6 @@ import '../style/media.css'
 import '../style/spinner.css'
 import '../style/map.css'
 import '../style/settings.css'
-import {callApi,fetchCars,fetchParkings,fetchPois} from '../services/callApi'
-import {carsFilter,parkingsFilter} from '../services/filters'
-const carsUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE";
-const parkingsUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING";
-const poisUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=POI";
 
 class App extends React.Component{
     constructor(){
@@ -90,7 +90,7 @@ class App extends React.Component{
 
         return(
             this.state.carsLoaded&&this.state.parkingsLoaded&&this.state.poisLoaded?
-                <div>
+                <React.Fragment>
                    <DisplaySettings
                        cars={this.state.cars}
                        parkings={this.state.parkings}
@@ -119,7 +119,7 @@ class App extends React.Component{
                         parkingsLoaded={this.state.parkingsLoaded}
                         poisLoaded={this.state.poisLoaded}
                     />
-                </div>
+                </React.Fragment>
                 : 
                 this.state.fetchErr?
                     <div className="error">
@@ -132,7 +132,6 @@ class App extends React.Component{
                        </div>
                        <div className="spinner"></div>
                     </div>
-                
         )
     }
 }

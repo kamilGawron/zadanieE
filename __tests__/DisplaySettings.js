@@ -1,6 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import DisplaySettings from '../components/DisplaySettings';
+import GeneralSettings from '../components/GeneralSettings';
+import Filters from '../components/Filters';
 import '../src/setupTest'
 import { expect } from 'chai';
 
@@ -28,16 +30,12 @@ describe('test <DisplaySettings />', () => {
         const wrapper = shallow(<DisplaySettings {...props}/>);
         expect(wrapper.find('.settings')).to.have.lengthOf(1);
     });
-    it('contains general settings`', () => {
+    it('render <GeneralSettings/>`', () => {
         const wrapper = shallow(<DisplaySettings {...props}/>);
-        expect(wrapper.find('.general')).to.have.lengthOf(1);
+        expect(wrapper.find(GeneralSettings)).to.have.lengthOf(1);
     });
-    it('contains cars settings`', () => {
+    it('render <Filters/>`', () => {
         const wrapper = shallow(<DisplaySettings {...props}/>);
-        expect(wrapper.find('.cars')).to.have.lengthOf(1);
-    });
-    it('contains parkings settings`', () => {
-        const wrapper = shallow(<DisplaySettings {...props}/>);
-        expect(wrapper.find('.parkings')).to.have.lengthOf(1);
+        expect(wrapper.find(Filters)).to.have.lengthOf(1);
     });
 });
