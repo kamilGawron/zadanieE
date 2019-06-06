@@ -3,15 +3,16 @@ import SampleMap from './SampleMap'
 import DisplaySettings from './DisplaySettings'
 import "../node_modules/leaflet/dist/leaflet.css"
 import "../node_modules/react-leaflet-markercluster/dist/styles.min.css"
-import {callApi} from '../services/callApi'
-const vehicleUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE";
-const parkingUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING";
-const poiUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=POI";
-
-
-export function log(msg){
-    console.log(msg)
-}
+import '../style/index.css'
+import '../style/media.css'
+import '../style/spinner.css'
+import '../style/map.css'
+import '../style/settings.css'
+import {callApi,fetchCars,fetchParkings,fetchPois} from '../services/callApi'
+import {carsFilter,parkingsFilter} from '../services/filters'
+const carsUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=VEHICLE";
+const parkingsUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=PARKING";
+const poisUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=POI";
 
 class App extends React.Component{
     constructor(){
@@ -42,53 +43,19 @@ class App extends React.Component{
         this.availableToggler = this.availableToggler.bind(this)
     }
     componentDidMount(){
-        let tmpMaxRange=0,tmpMaxSpaces=0;
-        callApi(vehicleUrl)
-        .then(data=>{
-            for(let x in data){
-                if(data[x].rangeKm>tmpMaxRange){
-                    tmpMaxRange=data[x].rangeKm;
-                }
+        let carsPromise = fetchCars(carsUrl); 
+        let parkingsPromise = fetchParkings(parkingsUrl);
+        let poisPromise = fetchPois(poisUrl);
+        Promise.all([carsPromise,parkingsPromise,poisPromise])
+        .then(values=>{
+            let tmpNewState={};
+            for (let x in values){
+                tmpNewState=Object.assign(tmpNewState,values[x])
             }
-            this.setState({
-                cars:data,
-                carsLoaded:true,
-                maxRange:tmpMaxRange
-            })
+            this.setState(tmpNewState)
         })
-        .catch(err=>{
-            this.setState({fetchErr:true})
-        })
-        
-       callApi(parkingUrl)
-       .then(data=>{
-           for (let x in data){
-               if(data[x].availableSpacesCount>tmpMaxSpaces){
-                   tmpMaxSpaces = data[x].availableSpacesCount;
-               }
-           }
-           this.setState({
-               parkings:data,
-               parkingsLoaded:true,
-               maxSpaces:tmpMaxSpaces
-           })
-       })
-       .catch(err=>{
-           this.setState({fetchErr:true})
-       })
-        
-        callApi(poiUrl)
-        .then(data=>{
-            this.setState({
-                pois:data,
-                poisLoaded:true
-            })
-        })
-        .catch(err=>{
-            this.setState({fetchErr:true})
-        })
+        .catch(err=>this.setState({fetchErr:true}))
     }
-    
     carsToggler(){
         this.setState(prev=>{
             return{
@@ -118,22 +85,16 @@ class App extends React.Component{
         this.setState({carStatus:status})
     }
     render(){
-        let tmpCars,tmpParkings;
-        if(this.state.carsLoaded){
-            tmpCars = this.state.cars.filter(elem=>{
-                return elem.batteryLevelPct>=this.state.minBatteryLevel&&elem.rangeKm>=this.state.minRange&&elem.status.includes(this.state.carStatus)
-            })
-        }
-        if(this.state.parkingsLoaded){
-            tmpParkings = this.state.parkings.filter(elem=>{
-                return elem.availableSpacesCount>=this.state.minSpaces
-            })
-        }
+        let tmpCars = carsFilter(this.state.cars,this.state.minBatteryLevel,this.state.minRange,this.state.carStatus);
+        let tmpParkings = parkingsFilter(this.state.parkings,this.state.minSpaces);
+
         return(
             this.state.carsLoaded&&this.state.parkingsLoaded&&this.state.poisLoaded?
                 <div>
                    <DisplaySettings
-                      {...this.state}
+                       cars={this.state.cars}
+                       parkings={this.state.parkings}
+                       pois={this.state.pois}
                        carsToggler={this.carsToggler}
                        parkingsToggler={this.parkingsToggler}
                        poisToggler={this.poisToggler}
@@ -141,11 +102,22 @@ class App extends React.Component{
                        filterCarLen={tmpCars.length}
                        filterParkingLen={tmpParkings.length}
                        availableToggler={this.availableToggler}
+                       minBatteryLevel={this.state.minBatteryLevel}
+                       maxRange={this.state.maxRange}
+                       minRange={this.state.minRange}
+                       minSpaces={this.state.minSpaces}
+                       maxSpaces={this.state.maxSpaces}
                    />
                     <SampleMap
-                        {...this.state}
+                        pois={this.state.pois}
                         cars={tmpCars}
                         parkings={tmpParkings}
+                        showCars={this.state.showCars}
+                        showParkings={this.state.showParkings}
+                        showPois={this.state.showPois}
+                        carsLoaded={this.state.carsLoaded}
+                        parkingsLoaded={this.state.parkingsLoaded}
+                        poisLoaded={this.state.poisLoaded}
                     />
                 </div>
                 : 

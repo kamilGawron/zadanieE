@@ -2,14 +2,7 @@ import React, { Component } from 'react'
 import { Map, TileLayer, Popup } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
 import L from 'leaflet'
-import CustomCarPopup from './CustomCarPopup'
-import CustomParkingPopup from './CustomParkingPopup'
-import CustomPoiPopup from './CustomPoiPopup'
-import CustomMarker from './CustomMarker'
-import carIconAvailable from '../services/icons/carIconAvailable'
-import carIconUnavailable from '../services/icons/carIconUnavailable'
-import parkingIcon from '../services/icons/parkingIcon'
-import poiIcon from '../services/icons/poiIcon'
+import {carMarkers,parkingMarkers,poiMarkers} from '../services/markers'
 
 export default class SampleMap extends Component {
     constructor(props){
@@ -24,44 +17,10 @@ export default class SampleMap extends Component {
         return  this.props.cars.length!=nextProps.cars.length || this.props.parkings.length!=nextProps.parkings.length || this.props.showCars!=nextProps.showCars|| this.props.showParkings!=nextProps.showParkings|| this.props.showPois!=nextProps.showPois
     }
     render() {
-        let cars,parkings,pois;
-        if(this.props.carsLoaded){
-            cars = this.props.showCars?  this.props.cars.map(function(elem,index){
-                return(
-                    <CustomMarker
-                        {...elem} 
-                        key={index} 
-                        icon ={elem.status=="AVAILABLE"? carIconAvailable:carIconUnavailable} 
-                        popup={<CustomCarPopup {...elem} />}
-                    />
-                )
-            }) : []
-        }
-        if(this.props.parkingsLoaded){
-            parkings = this.props.showParkings? this.props.parkings.map(function(elem,index){
-                return(
-                    <CustomMarker
-                         {...elem} 
-                         key={index} 
-                         icon ={parkingIcon} 
-                         popup={<CustomParkingPopup {...elem} />}
-                     />
-                )
-            }) : []
-        }
-        if(this.props.poisLoaded){
-            pois = this.props.showPois? this.props.pois.map(function(elem,index){
-                return(
-                    <CustomMarker
-                        {...elem} 
-                        key={index} 
-                        icon ={poiIcon} 
-                        popup={<CustomPoiPopup {...elem} />}
-                    />
-                )
-            }) :[]
-        }
-        
+        let cars = carMarkers(this.props.cars,this.props.showCars)
+        let parkings = parkingMarkers(this.props.parkings,this.props.showParkings)
+        let pois = poiMarkers(this.props.pois,this.props.showPois)
+      
         return (
             <Map center={[this.state.lat,this.state.lng]} zoom={this.state.zoom}>
                 <TileLayer

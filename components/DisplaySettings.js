@@ -4,7 +4,6 @@ import Filters from './Filters'
 import {log} from './App'
 
 function showFilters(){
-    log("msg from display")
     let filters = document.getElementById("filters");
     filters.style.display = filters.style.display=="flex"? "none":"flex";
     let zoom = document.getElementsByClassName("leaflet-control");
