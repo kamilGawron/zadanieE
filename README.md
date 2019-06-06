@@ -1,6 +1,7 @@
 # Frontend Developer recruitment task
 
 ReactJS App displaying on map current position cars, parkings and pois.
+[See on GitHub Pages](https://kamilgawron.github.io/zadanieE)
 ![alt text](https://raw.githubusercontent.com/kamilgawron/zadanieE/master/img/screen.png)
 ## Dependencies
 - babel-jest (24.8.0)
