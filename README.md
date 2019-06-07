@@ -63,3 +63,11 @@ Run tests with:
 - webpack (4.32.2)
 - webpack-cli (3.3.2)
 - webpack-dev-server (3.4.1)
+
+## License
+
+This project is released under the MIT Licence.
+
+## Author
+
+Kamil Gawron
