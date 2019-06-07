@@ -2,7 +2,39 @@
 
 ReactJS App displaying on map current position cars, parkings and pois.
 [See on GitHub Pages](https://kamilgawron.github.io/zadanieE)
+
 ![alt text](https://raw.githubusercontent.com/kamilgawron/zadanieE/master/img/screen.png)
+
+
+## Setup
+Get the code by either cloning this repository using git
+
+```
+> git clone https://github.com/kamilGawron/zadanieE.git
+
+```
+
+... or  [downloading source code](https://github.com/kamilGawron/zadanieE/archive/master.zip)  code as a zip archive.
+
+Once downloaded, open the terminal in the project directory, and install dependencies with:
+
+```
+> npm install
+
+```
+Then start the example app with:
+
+```
+> npm start
+```
+The app should now be up and running at [http://localhost:8080](http://localhost:8080/)  
+
+Run tests with:
+
+```
+> npm test
+```
+
 ## Dependencies
 - babel-jest (24.8.0)
 - chai (4.2.0)
