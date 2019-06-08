@@ -6,7 +6,12 @@ import ParkingsSettings from './ParkingsSettings'
 export default function Filters(props){
     return(
         <div id="filters" className="specific-settings">
-            <div onClick={props.showFilters} className="close">&#9747;</div>
+            <div 
+                onClick={props.showFilters} 
+                className="close"
+            >
+                &#9747;
+            </div>
             <CarsSettings
                 availableToggler={props.availableToggler}
                 inputChange={props.inputChange}

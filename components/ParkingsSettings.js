@@ -5,7 +5,7 @@ import FiltersResult from './FiltersResult'
 
 export default function ParkingsSettings(props){
     return(
-        <div className="cars">
+        <div className="parkings">
             <h6>Filtruj parkingi:</h6>
             <InputFiltersRow
                 title="Minimalna dostępna liczba miejsc"

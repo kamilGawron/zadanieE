@@ -30,11 +30,11 @@ describe('test <DisplaySettings />', () => {
         const wrapper = shallow(<DisplaySettings {...props}/>);
         expect(wrapper.find('.settings')).to.have.lengthOf(1);
     });
-    it('render <GeneralSettings/>`', () => {
+    it('renders <GeneralSettings/>`', () => {
         const wrapper = shallow(<DisplaySettings {...props}/>);
         expect(wrapper.find(GeneralSettings)).to.have.lengthOf(1);
     });
-    it('render <Filters/>`', () => {
+    it('renders <Filters/>`', () => {
         const wrapper = shallow(<DisplaySettings {...props}/>);
         expect(wrapper.find(Filters)).to.have.lengthOf(1);
     });
