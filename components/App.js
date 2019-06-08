@@ -9,10 +9,10 @@ const poisUrl = "https://dev.vozilla.pl/api-client-portal/map?objectType=POI";
 import "../node_modules/leaflet/dist/leaflet.css"
 import "../node_modules/react-leaflet-markercluster/dist/styles.min.css"
 import '../style/index.css'
-import '../style/media.css'
 import '../style/spinner.css'
 import '../style/map.css'
 import '../style/settings.css'
+import '../style/media.css'
 
 class App extends React.Component{
     constructor(){
