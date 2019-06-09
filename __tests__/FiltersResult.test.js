@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import FiltersResult from '../components/FiltersResult';
 import '../src/setupTest'
-import { expect } from 'chai';
 
 
 describe('test <FiltersResult />', () => {
@@ -15,7 +14,7 @@ describe('test <FiltersResult />', () => {
                 type="type"
             />
         );
-        expect(wrapper.find('span').text()).to.equal('znaleziono: 20');
+        expect(wrapper.find('span').text()).toEqual('znaleziono: 20');
     });
     it('if default==change displays info span with correct type ', () => {
         const wrapper = shallow(
@@ -25,7 +24,7 @@ describe('test <FiltersResult />', () => {
                 type="type"
             />
         );
-        expect(wrapper.find('span').text()).to.equal('Wszystkie type spełniają określone kryteria');
+        expect(wrapper.find('span').text()).toEqual('Wszystkie type spełniają określone kryteria');
     });
     
 });

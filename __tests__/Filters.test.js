@@ -4,7 +4,6 @@ import Filters from '../components/Filters';
 import CarsSettings from '../components/CarsSettings';
 import ParkingsSettings from '../components/ParkingsSettings';
 import '../src/setupTest'
-import { expect } from 'chai';
 
 const props={
     showFilters : function(){},
@@ -24,15 +23,15 @@ describe('test <Filters />', () => {
     const wrapper = shallow(<Filters {...props}/>);
 
     it('renders a div className="specific-settings"', () => {
-        expect(wrapper.find('div.specific-settings')).to.have.lengthOf(1)
+        expect(wrapper.find('div.specific-settings')).toHaveLength(1)
     });
     it('renders a div className="close"', () => {
-        expect(wrapper.find('div.close')).to.have.lengthOf(1)
+        expect(wrapper.find('div.close')).toHaveLength(1)
     });
     it('renders a <CarsSettings/>', () => {
-        expect(wrapper.find(CarsSettings)).to.have.lengthOf(1)
+        expect(wrapper.find(CarsSettings)).toHaveLength(1)
     });
     it('renders a <ParkingsSettings/>', () => {
-        expect(wrapper.find(ParkingsSettings)).to.have.lengthOf(1)
+        expect(wrapper.find(ParkingsSettings)).toHaveLength(1)
     });
 });

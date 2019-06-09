@@ -4,15 +4,14 @@ import App from '../components/App';
 import DisplaySettings from '../components/DisplaySettings';
 import SampleMap from '../components/SampleMap';
 import '../src/setupTest'
-import { expect } from 'chai';
 
 describe('test <App /> when load state is false', () => {
     const wrapper = shallow(<App/>);
     it('does not renders a <DisplaySettings/>', () => {
-        expect(wrapper.find(DisplaySettings)).to.have.lengthOf(0);
+        expect(wrapper.find(DisplaySettings)).toHaveLength(0);
     });
     it('does not renders a <SampleMap/>', () => {
-        expect(wrapper.find(SampleMap)).to.have.lengthOf(0);
+        expect(wrapper.find(SampleMap)).toHaveLength(0);
     });
 });
 describe('test <App /> when load state is true', () => {
@@ -24,9 +23,9 @@ describe('test <App /> when load state is true', () => {
         fetchErr:false,
     })
     it('renders a <DisplaySettings/>', () => {
-        expect(wrapper.find(DisplaySettings)).to.have.lengthOf(1);
+        expect(wrapper.find(DisplaySettings)).toHaveLength(1);
     });
     it('renders a <SampleMap/>', () => {
-        expect(wrapper.find(SampleMap)).to.have.lengthOf(1);
+        expect(wrapper.find(SampleMap)).toHaveLength(1);
     });
 });

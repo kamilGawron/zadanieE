@@ -5,7 +5,6 @@ import AvailableSwitcher from '../components/AvailableSwitcher';
 import InputFiltersRow from '../components/InputFiltersRow';
 import FiltersResult from '../components/FiltersResult';
 import '../src/setupTest'
-import { expect } from 'chai';
 
 const props={
     availableToggler : function(){},
@@ -24,37 +23,37 @@ const props={
 describe('test <CarsSettings />', () => {
     const wrapper = shallow(<CarsSettings {...props}/>);
     it('contain a div className="cars"`', () => {
-        expect(wrapper.find('div.cars')).to.have.lengthOf(1);
+        expect(wrapper.find('div.cars')).toHaveLength(1);
     });
     it('display a h6 with "Filtruj samochody:" in div className="cars"', () => {
-        expect(wrapper.find('div.cars h6').text()).to.equal('Filtruj samochody:');
+        expect(wrapper.find('div.cars h6').text()).toEqual('Filtruj samochody:');
     });
     it('renders a <AvailableSwitcher/>', () => {
-        expect(wrapper.find(AvailableSwitcher)).to.have.lengthOf(1);
+        expect(wrapper.find(AvailableSwitcher)).toHaveLength(1);
     });
     it('renders a two <InputFiltersRow/>', () => {
-        expect(wrapper.find(InputFiltersRow)).to.have.lengthOf(2);
+        expect(wrapper.find(InputFiltersRow)).toHaveLength(2);
     });
     it('does not renders a <FiltersResult/> when minBatteryLevel==0 and minRange==0 ', () => {
-        expect(wrapper.find(FiltersResult)).to.have.lengthOf(0);
+        expect(wrapper.find(FiltersResult)).toHaveLength(0);
     });
     it('renders an empty span with "&nbsp;" when minBatteryLevel==0 and minRange==0  ', () => {
-        expect(wrapper.find('div.cars span')).to.have.lengthOf(1);
+        expect(wrapper.find('div.cars span')).toHaveLength(1);
     });
     it('renders a <FiltersResult/> when minBatteryLevel!=0', () => {
         wrapper.setProps({
             minBatteryLevel:1,
         })
-        expect(wrapper.find(FiltersResult)).to.have.lengthOf(1);
+        expect(wrapper.find(FiltersResult)).toHaveLength(1);
     });
     it('renders a <FiltersResult/> when minRange!=0', () => {
         wrapper.setProps({
             minBatteryLevel:0,
             minRange:1,
         })
-        expect(wrapper.find(FiltersResult)).to.have.lengthOf(1);
+        expect(wrapper.find(FiltersResult)).toHaveLength(1);
     });
         it('does not renders an empty span with "&nbsp;" when minRange!=0', () => {
-            expect(wrapper.find('div.cars span')).to.have.lengthOf(0);
+            expect(wrapper.find('div.cars span')).toHaveLength(0);
     });
 });

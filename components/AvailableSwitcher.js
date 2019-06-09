@@ -2,7 +2,7 @@ import React from "react"
 
 export default function AvailableSwitcher(props){
     return (
-        <div>
+        <div key="asda">
             <span>Tylko dostępne</span>
             <label className="switch">
                 <input 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import '../src/setupTest'
-import { expect } from 'chai';
 import SampleMap from "../components/SampleMap"
 import {Map} from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
@@ -20,10 +19,10 @@ const props={
 describe('test <SampleMap />', () => {
     it('renders a map', () => {
         const wrapper = shallow(<SampleMap {...props}/>);
-        expect(wrapper.find(Map)).to.have.lengthOf(1);
+        expect(wrapper.find(Map)).toHaveLength(1);
     });
     it('renders a 3 marker cluster groups', () => {
         const wrapper = shallow(<SampleMap {...props}/>);
-        expect(wrapper.find(MarkerClusterGroup)).to.have.lengthOf(3);
+        expect(wrapper.find(MarkerClusterGroup)).toHaveLength(3);
     });
 });

@@ -4,9 +4,6 @@ import DisplaySettings from '../components/DisplaySettings';
 import GeneralSettings from '../components/GeneralSettings';
 import Filters from '../components/Filters';
 import '../src/setupTest'
-import { expect } from 'chai';
-
-
 
 const props={
     cars:[],
@@ -28,14 +25,14 @@ const props={
 describe('test <DisplaySettings />', () => {
     it('renders a div with class settings`', () => {
         const wrapper = shallow(<DisplaySettings {...props}/>);
-        expect(wrapper.find('.settings')).to.have.lengthOf(1);
+        expect(wrapper.find('.settings')).toHaveLength(1);
     });
     it('renders <GeneralSettings/>`', () => {
         const wrapper = shallow(<DisplaySettings {...props}/>);
-        expect(wrapper.find(GeneralSettings)).to.have.lengthOf(1);
+        expect(wrapper.find(GeneralSettings)).toHaveLength(1);
     });
     it('renders <Filters/>`', () => {
         const wrapper = shallow(<DisplaySettings {...props}/>);
-        expect(wrapper.find(Filters)).to.have.lengthOf(1);
+        expect(wrapper.find(Filters)).toHaveLength(1);
     });
 });
