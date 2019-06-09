@@ -1,3 +1,5 @@
+const fetch = require("node-fetch")
+
 export function callApi(url){
     return new Promise(function(resolve,reject){
         fetch(url)
