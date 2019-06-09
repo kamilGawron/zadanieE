@@ -1,7 +1,6 @@
 import React from 'react'
 import {Marker} from 'react-leaflet'
 
-
 function CustomMarker({index,location,icon,popup}){
     return(
         <Marker 

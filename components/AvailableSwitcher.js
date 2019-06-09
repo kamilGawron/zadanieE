@@ -1,8 +1,9 @@
 import React from "react"
+const shortid = require('shortid');
 
 export default function AvailableSwitcher(props){
     return (
-        <div key="asda">
+        <div key={shortid.generate()}>
             <span>Tylko dostępne</span>
             <label className="switch">
                 <input 

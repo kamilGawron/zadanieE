@@ -37,7 +37,6 @@ Run tests with:
 
 ## Dependencies
 - babel-jest (24.8.0)
-- chai (4.2.0)
 - enzyme (3.9.0)
 - enzyme-adapter-react-16 (1.13.2)
 - enzyme-to-json(3.3.5)
@@ -51,12 +50,14 @@ Run tests with:
 - react-dom (16.8.6)
 - react-leaflet (1.9.1)
 - react-leaflet-markercluster (1.1.8)
+- react-test-renderer (16.8.6)
+- shortid (2.2.14)
 
 
 ## Dev Dependencies
 - @babel/core (7.4.5)
--  @babel/preset-env (7.4.5)
--  @babel/preset-react (7.0.0)
+- @babel/preset-env (7.4.5)
+- @babel/preset-react (7.0.0)
 - babel-loader (8.0.6)
 - css-loader (2.1.1)
 - html-webpack-plugin (3.2.0)

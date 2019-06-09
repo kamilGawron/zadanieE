@@ -2,10 +2,10 @@ import React from "react"
 import InputFiltersRow from './InputFiltersRow'
 import AvailableSwitcher from './AvailableSwitcher'
 import FiltersResult from './FiltersResult'
-
+import shortid from 'shortid'
 export default function CarsSettings(props){
     return(
-        <div className="cars">
+        <div className="cars" key={shortid.generate()}>
             <h6>Filtruj samochody:</h6>
             <AvailableSwitcher
                 availableToggler={props.availableToggler} 

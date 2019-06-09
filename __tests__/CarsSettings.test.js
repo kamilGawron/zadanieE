@@ -5,7 +5,7 @@ import AvailableSwitcher from '../components/AvailableSwitcher';
 import InputFiltersRow from '../components/InputFiltersRow';
 import FiltersResult from '../components/FiltersResult';
 import '../src/setupTest'
-
+import renderer from 'react-test-renderer'
 const props={
     availableToggler : function(){},
     inputChange : function(){},
@@ -22,6 +22,10 @@ const props={
 }
 describe('test <CarsSettings />', () => {
     const wrapper = shallow(<CarsSettings {...props}/>);
+    it('matches the snapshot', () => {
+        const tree=renderer.create(wrapper).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
     it('contain a div className="cars"`', () => {
         expect(wrapper.find('div.cars')).toHaveLength(1);
     });

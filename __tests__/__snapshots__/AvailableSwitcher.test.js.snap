@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test <AvailableSwitcher /> matches the snapshot 1`] = `
+<div>
+  <span>
+    Tylko dostępne
+  </span>
+  <label
+    className="switch"
+  >
+    <input
+      defaultChecked={true}
+      id="availableSwitcher"
+      name="available"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <span
+      className="slider round"
+    />
+  </label>
+</div>
+`;

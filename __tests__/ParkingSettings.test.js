@@ -4,6 +4,7 @@ import ParkingsSettings from '../components/ParkingsSettings';
 import InputFiltersRow from '../components/InputFiltersRow';
 import FiltersResult from '../components/FiltersResult';
 import '../src/setupTest'
+import renderer from 'react-test-renderer'
 
 const props={
     inputChange : function(){},
@@ -15,6 +16,10 @@ const props={
 }
 describe('test <ParkingsSettings />', () => {
     const wrapper = shallow(<ParkingsSettings {...props}/>);
+    it('matches the snapshot', () => {
+        const tree=renderer.create(wrapper).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
     it('renders a div with className="parkings', () => {
         expect(wrapper.find('div.parkings')).toHaveLength(1);
     });

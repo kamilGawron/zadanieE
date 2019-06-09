@@ -4,7 +4,6 @@ import CustomCarPopup from '../components/CustomCarPopup';
 import '../src/setupTest'
 import {Popup} from 'react-leaflet'
 
-
 const props={
     name:"",
     status:"",
@@ -14,12 +13,12 @@ const props={
     platesNumber:""
 }
 describe('test <CustomCarPopup />', () => {
+    const wrapper = shallow(<CustomCarPopup {...props}/>);
+    
     it('renders a popup`', () => {
-        const wrapper = shallow(<CustomCarPopup {...props}/>);
         expect(wrapper.find(Popup)).toHaveLength(1);
     });
     it('contain div className="content"`', () => {
-        const wrapper = shallow(<CustomCarPopup {...props}/>);
         expect(wrapper.find('.content')).toHaveLength(1);
     });
 });

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test <App /> when load state is false matches the snapshot 1`] = `
+<div
+  className="loading"
+>
+  <div>
+    ładowanie
+  </div>
+  <div
+    className="spinner"
+  />
+</div>
+`;

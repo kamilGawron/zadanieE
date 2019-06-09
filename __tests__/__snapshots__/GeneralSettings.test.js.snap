@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test <GeneralSettings /> matches the snapshot 1`] = `
+<div
+  className="general"
+>
+  <h6>
+    Wybierz elementy jakie chcesz zobaczyć na mapie:
+  </h6>
+  <div>
+    <div>
+      <span>
+        Samochody
+         (
+        0
+        )
+      </span>
+      <label
+        className="switch"
+      >
+        <input
+          defaultChecked={true}
+          id="carsToggler"
+          type="checkbox"
+        />
+        <span
+          className="slider round"
+        />
+      </label>
+    </div>
+    <div>
+      <span>
+        Parkingi
+         (
+        0
+        )
+      </span>
+      <label
+        className="switch"
+      >
+        <input
+          defaultChecked={true}
+          id="parkingsToggler"
+          type="checkbox"
+        />
+        <span
+          className="slider round"
+        />
+      </label>
+    </div>
+    <div>
+      <span>
+        POI
+         (
+        0
+        )
+      </span>
+      <label
+        className="switch"
+      >
+        <input
+          defaultChecked={true}
+          id="poisToggler"
+          type="checkbox"
+        />
+        <span
+          className="slider round"
+        />
+      </label>
+    </div>
+    <div>
+      Filtruj
+      <span
+        className="filters-icon"
+        onClick={[Function]}
+      >
+        ☰
+      </span>
+    </div>
+  </div>
+</div>
+`;

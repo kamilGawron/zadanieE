@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import GeneralSettings from '../components/GeneralSettings';
 import ViewSettings from '../components/ViewSettings';
 import '../src/setupTest'
-
+import renderer from 'react-test-renderer'
 const props={
     toggler : function(){},
     showFilters : function(){},
@@ -13,6 +13,10 @@ const props={
 }
 describe('test <GeneralSettings />', () => {
     const wrapper = shallow(<GeneralSettings {...props}/>);
+    it('matches the snapshot', () => {
+        const tree=renderer.create(wrapper).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
     it('renders a 3 <ViewSettings/>', () => {
         expect(wrapper.find(ViewSettings)).toHaveLength(3)
     });

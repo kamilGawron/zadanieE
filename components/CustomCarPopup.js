@@ -3,7 +3,7 @@ import {Popup} from 'react-leaflet'
 
 function CustomCarPopup(props){
     return(
-        <Popup>
+        <Popup >
             <div className="car">
                 <h3>{props.name}</h3>
                 {props.status=="AVAILABLE"? 
