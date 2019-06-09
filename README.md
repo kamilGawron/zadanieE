@@ -46,6 +46,7 @@ Run tests with:
 - jest (24.8.0)
 - leaflet (1.5.1)
 - leaflet.markercluster (1.4.1)
+- node-fetch (2.6.0)
 - react (16.8.6)
 - react-dom (16.8.6)
 - react-leaflet (1.9.1)
