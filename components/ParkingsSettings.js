@@ -1,12 +1,11 @@
 import React from "react"
 import InputFiltersRow from './InputFiltersRow'
 import FiltersResult from './FiltersResult'
-import shortid from 'shortid'
 
 
 export default function ParkingsSettings(props){
     return(
-        <div key={shortid.generate()} className="parkings">
+        <div key="" className="parkings">
             <h6>Filtruj parkingi:</h6>
             <InputFiltersRow
                 title="Minimalna dostępna liczba miejsc"

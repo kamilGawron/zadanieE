@@ -3,7 +3,6 @@ import SampleMap from './SampleMap'
 import DisplaySettings from './DisplaySettings'
 import {fetchCars,fetchParkings,fetchPois} from '../services/callApi'
 import {carsFilter,parkingsFilter} from '../services/filters'
-import shortid from 'shortid'
 import "../node_modules/leaflet/dist/leaflet.css"
 import "../node_modules/react-leaflet-markercluster/dist/styles.min.css"
 import '../style/index.css'
@@ -91,8 +90,7 @@ class App extends React.Component{
 
         return(
             this.state.carsLoaded&&this.state.parkingsLoaded&&this.state.poisLoaded?
-            <React.Fragment key={shortid.generate()}
-                >
+            <React.Fragment key="">
                    <DisplaySettings 
                        cars={this.state.cars}
                        parkings={this.state.parkings}
@@ -124,11 +122,11 @@ class App extends React.Component{
                 </React.Fragment>
                 : 
                 this.state.fetchErr?
-                    <div key={shortid.generate()} className="error">
+                    <div key="" className="error">
                         Wystąpił błąd podczas pobierania danych.
                     </div>
                     :
-                    <div key={shortid.generate()} className="loading">
+                    <div key="" className="loading">
                        <div>
                            ładowanie
                        </div>

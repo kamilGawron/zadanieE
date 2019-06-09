@@ -51,7 +51,6 @@ Run tests with:
 - react-leaflet (1.9.1)
 - react-leaflet-markercluster (1.1.8)
 - react-test-renderer (16.8.6)
-- shortid (2.2.14)
 
 
 ## Dev Dependencies

@@ -1,10 +1,9 @@
 import React from "react"
 import ViewSettings from './ViewSettings'
-import shortid from 'shortid'
 
 export default function GeneralSettings(props){
     return(
-        <div key={shortid.generate()} className="general">
+        <div key="" className="general">
             <h6>Wybierz elementy jakie chcesz zobaczyć na mapie:</h6>
             <div>
                 <ViewSettings

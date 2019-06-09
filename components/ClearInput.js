@@ -1,9 +1,8 @@
 import React from "react"
-import shortid from "shortid"
 
 export default function ClearInput(props){
     return (
-        <span key={shortid.generate()} onClick={()=>{
+        <span key="" onClick={()=>{
                 props.inputChange({
                     target:{
                         name:props.name,
